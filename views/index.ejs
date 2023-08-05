@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaunchTrackr</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <div class="title">
+        <h1>LaunchTrackr</h1>
+        <p>Your Launchment tracker</p>
+    </div>
+
+    <div class="filter">
+        <form action="/" method="post">
+            <label for="companies">Select Company:</label>
+            <select name="companies" id="companies">
+                <option value="all">All Companies</option>
+                <option value="SpaceX">SpaceX</option>
+                <option value="Nasa">Nasa</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <% if (rockets.length> 0 && descriptions.length > 0 && images.length > 0 && time.length > 0) { %>
+        <% for (let i=0; i < rockets.length; i++) { %>
+            <div class="launch-info">
+                <h1>
+                    <%= rockets[i] %>
+                </h1>
+                <h2>
+                    <%= time[i] %>
+                </h2>
+                <p>
+                    <%= descriptions[i] %>
+                </p>
+                <img class="photo" src="<%= images[i] %>" alt="Rocket-Photo">
+            </div>
+            <% } %>
+                <% } else { %>
+                    <p>Nenhum lançamento encontrado.</p>
+                    <% } %>
+
+                        <footer class="footer">
+                            <p>&copy; 2023 LaunchTrackr. All rights reserved.</p>
+                        </footer>
+
+                        <% if (rockets && descriptions && images) { %>
+                            <script>
+
+                                const imgElements = document.querySelector(".photo"); // Obtenha todos os elementos com a classe .photo
+                                imgElements.forEach((image, index) => { // Use forEach para iterar sobre todos os elementos com a classe .photo
+                                    image.src = images[index]; // Atribua o URL da imagem ao atributo src de cada elemento
+                                });
+                            </script>
+                            <% } %>
+
+
+
+</body>
+
+</html>
