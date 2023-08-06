@@ -42,11 +42,11 @@ app.post("/", async (req, res) => {
 
         if (data && data.results && data.results.length > 0) {
             for (let i = 0; i < 10; i++) {
-                let rocket = data.results[i].mission ? data.results[i].mission.name : "Unknown Rocket";
-                let mission = data.results[i].mission ? data.results[i].mission.description : "No mission description available";
-                let image = data.results[i].image;
-                let launchStart = data.results[i].net;
-                let windowEnd = data.results[i].window_end;
+                let rocket = data.results[i]?.mission?.name || "Unknown Rocket";
+                let mission = data.results[i]?.mission?.description || "No mission description available";
+                let image = data.results[i]?.image;
+                let launchStart = data.results[i]?.net;
+                let windowEnd = data.results[i]?.window_end;
 
                 if (image != null) {
                     images.push(image);
@@ -63,7 +63,7 @@ app.post("/", async (req, res) => {
                     let formatedTime = formatTime(timeRemaining);
                     timeNow = `The launch will take place at: ${formatedTime}`;
                 } else if (currentTime >= launchTime && currentTime <= windowEndTime) {
-                    timeNow = "The launh is taking place now!";
+                    timeNow = "The launch is taking place now!";
                 } else {
                     timeNow = "The launch has already occurred.";
                 }
@@ -72,15 +72,15 @@ app.post("/", async (req, res) => {
                 time.push(timeNow); // Adicionar o tempo ao array 'time'
             }
         }
-        console.log(time)
         res.render("index.ejs", { rockets, descriptions, images, time });
     } catch (error) {
-        console.error("Erro ao acessar a API:", error);
+        console.error("Error accessing the API:", error);
         res.render("index.ejs", { rockets: [], descriptions: [], images: [] });
     }
 });
 
 
-app.listen(3000, () => {
-    console.log("http://localhost:3000");
+
+app.listen(3001, () => {
+    console.log("http://localhost:3001");
 });
