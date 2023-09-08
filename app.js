@@ -12,6 +12,7 @@ app.get("/", (req, res) => {
 });
 
 function formatTime(milliseconds) {
+
     const seconds = Math.floor(milliseconds / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
@@ -41,6 +42,7 @@ app.post("/", async (req, res) => {
         let time = []; // Definir a variável 'time' para armazenar os tempos restantes
 
         if (data && data.results && data.results.length > 0) {
+
             for (let i = 0; i < 10; i++) {
                 let rocket = data.results[i]?.mission?.name || "Unknown Rocket";
                 let mission = data.results[i]?.mission?.description || "No mission description available";
@@ -61,7 +63,7 @@ app.post("/", async (req, res) => {
                 if (currentTime < launchTime) {
                     const timeRemaining = launchTime - currentTime;
                     let formatedTime = formatTime(timeRemaining);
-                    timeNow = `The launch will take place at: ${formatedTime}`;
+                    timeNow = `The launch will take place in: ${formatedTime}`;
                 } else if (currentTime >= launchTime && currentTime <= windowEndTime) {
                     timeNow = "The launch is taking place now!";
                 } else {
@@ -78,7 +80,6 @@ app.post("/", async (req, res) => {
         res.render("index.ejs", { rockets: [], descriptions: [], images: [] });
     }
 });
-
 
 
 app.listen(3001, () => {
