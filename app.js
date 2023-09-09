@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-    res.render("index.ejs", { rockets: [], descriptions: [], images: [] }); // Definindo as variáveis como arrays vazios
+    res.render("index.ejs", { rockets: [], descriptions: [], images: [] }); 
 });
 
 function formatTime(milliseconds) {
@@ -39,7 +39,7 @@ app.post("/", async (req, res) => {
         let rockets = [];
         let descriptions = [];
         let images = [];
-        let time = []; // Definir a variável 'time' para armazenar os tempos restantes
+        let time = []; 
 
         if (data && data.results && data.results.length > 0) {
 
@@ -58,7 +58,7 @@ app.post("/", async (req, res) => {
                 const windowEndTime = new Date(windowEnd);
                 const currentTime = new Date();
 
-                let timeNow; // Definir a variável 'timeNow'
+                let timeNow; 
 
                 if (currentTime < launchTime) {
                     const timeRemaining = launchTime - currentTime;
@@ -71,7 +71,7 @@ app.post("/", async (req, res) => {
                 }
                 rockets.push(rocket);
                 descriptions.push(mission);
-                time.push(timeNow); // Adicionar o tempo ao array 'time'
+                time.push(timeNow); 
             }
         }
         res.render("index.ejs", { rockets, descriptions, images, time });

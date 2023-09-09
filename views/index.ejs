@@ -52,10 +52,9 @@
                         <% if (rockets && descriptions && images) { %>
                             <script>
 
-                                const imgElements = document.querySelector(".photo"); // Obtenha todos os elementos com a classe .photo
-                                imgElements.forEach((image, index) => { // Use forEach para iterar sobre todos os elementos com a classe .photo
-                                    image.src = images[index]; // Atribua o URL da imagem ao atributo src de cada elemento
-                                });
+                                const imgElements = document.querySelector(".photo"); 
+                                imgElements.forEach((image, index) => { 
+                                    image.src = images[index];                                });
                             </script>
                             <% } %>
 
